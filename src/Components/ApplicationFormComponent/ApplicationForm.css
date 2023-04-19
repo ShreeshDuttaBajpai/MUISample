@@ -1,12 +1,12 @@
-.mainbody{
+.mainbodyapplication{
     display: flex;
     flex-direction: column;
 }
 
-.mainbody p{
+/* .mainbody p{
     margin-top: 35px;
     margin-right: 20px;
-}
+} */
 .autocomplete{
     margin-top: 20px;
     display: inline;

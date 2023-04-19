@@ -573,7 +573,7 @@ function ApplicationFormComponent() {
   };
 
   return (
-    <div className="mainbody">
+    <div className="mainbodyapplication">
       <div className="badge">
         <Stack direction="row" spacing={1}>
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
@@ -779,7 +779,12 @@ function ApplicationFormComponent() {
         <Pagination count={10} />
       </div>
       <div className="buttons">
-        <Button variant="contained" color="success" onClick={handleClick}>
+        <Button
+          type="submit"
+          variant="contained"
+          color="success"
+          onClick={handleClick}
+        >
           Submit
         </Button>
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
