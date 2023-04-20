@@ -14,24 +14,9 @@ import "./SignInComponent.css";
 import Shreesh from "./../../assests/Shreesh.jpg";
 import ToggleButton from "@mui/material/ToggleButton";
 import Switch from "@mui/material/Switch";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import CssBaseline from "@mui/material/CssBaseline";
+import { handleSubmit } from "./SignInFunctions";
+import { Copyright } from "./SignInFunctions";
 
 const theme = createTheme();
 
@@ -42,36 +27,11 @@ export default function SignInComponent() {
   const [emailErrorText, setEmailErrorText] = React.useState("");
   const [passwordErrorText, setPasswordErrorText] = React.useState("");
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    if (!email) {
-      setEmailErrorText("Please enter email");
-    } else {
-      setEmailErrorText("");
-    }
-    if (!password) {
-      setPasswordErrorText("Please enter password");
-    } else {
-      setPasswordErrorText("");
-    }
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
-
   return (
     <div className="mainOutsideDiv">
       <div className="toggleButton">
         <ToggleButton
           className="togglebuttonstyle"
-          // value="check"
           selected={selected}
           onChange={() => {
             setSelected(!selected);
@@ -91,12 +51,11 @@ export default function SignInComponent() {
           <div className="themeProviderDiv">
             <Container
               sx={{
-                // height: 400,
                 maxWidth: "60%!important",
               }}
               component="main"
             >
-              {/* <CssBaseline /> */}
+              <CssBaseline />
               <div className="boxDiv">
                 <Box
                   selected={selected}
@@ -104,7 +63,6 @@ export default function SignInComponent() {
                     marginTop: 4,
                     display: "flex",
                     marginLeft: 0,
-                    // flexDirection: "column",
                     flexDirection: selected === true ? "column" : "row",
                     alignItems: "center",
                     justifyItems: "center",
@@ -142,18 +100,24 @@ export default function SignInComponent() {
 
                     <Box
                       component="form"
-                      onSubmit={handleSubmit}
+                      // onSubmit={handleSubmit}
+                      onSubmit={(e) =>
+                        handleSubmit(
+                          e,
+                          email,
+                          setEmailErrorText,
+                          password,
+                          setPasswordErrorText
+                        )
+                      }
                       noValidate
                       sx={{ mt: 1 }}
                     >
                       <TextField
                         margin="normal"
-                        // error
-                        // helperText="Incorrect entry."
                         required
                         fullWidth
                         id="email"
-                        // label="Email Address"
                         placeholder="Enter Name*"
                         name="email"
                         autoComplete="email"
@@ -161,14 +125,12 @@ export default function SignInComponent() {
                         error={!!emailErrorText}
                         helperText={emailErrorText}
                         onChange={(e) => setEmail(e.target.value)}
-                        // sx={{ mb: 2, position:'relative' }}
                       />
                       <TextField
                         margin="normal"
                         required
                         fullWidth
                         name="password"
-                        // label="Password"
                         placeholder="Password*"
                         inputProps={{ maxLength: 8 }}
                         type="password"
@@ -185,7 +147,6 @@ export default function SignInComponent() {
                       />
                       <Button
                         type="submit"
-                        onClick={onSubmit}
                         fullWidth
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
