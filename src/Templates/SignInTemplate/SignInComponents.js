@@ -10,7 +10,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import "./SignInComponent.css";
+// import "./SignInComponent.css";
 import Shreesh from "./../../assests/Shreesh.jpg";
 import ToggleButton from "@mui/material/ToggleButton";
 import Switch from "@mui/material/Switch";
@@ -28,10 +28,31 @@ export default function SignInComponent() {
   const [passwordErrorText, setPasswordErrorText] = React.useState("");
 
   return (
-    <div className="mainOutsideDiv">
-      <div className="toggleButton">
+    <Container
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+        minWidth: "100vw",
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          left: 0,
+          height: "100%",
+          width: "100%",
+        }}
+      >
         <ToggleButton
-          className="togglebuttonstyle"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            marginTop: "1rem",
+            height: "50px",
+            width: "50px",
+            border: 0,
+          }}
           selected={selected}
           onChange={() => {
             setSelected(!selected);
@@ -39,8 +60,15 @@ export default function SignInComponent() {
         >
           <Switch />
         </ToggleButton>
-      </div>
-      <div className="main">
+      </Box>
+      <Container
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          height: "100%",
+          width: "100%",
+        }}
+      >
         <ThemeProvider
           sx={{
             height: 1,
@@ -48,7 +76,14 @@ export default function SignInComponent() {
           }}
           theme={theme}
         >
-          <div className="themeProviderDiv">
+          <Container
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              width: "100%",
+              height: "100%",
+            }}
+          >
             <Container
               sx={{
                 maxWidth: "60%!important",
@@ -56,7 +91,14 @@ export default function SignInComponent() {
               component="main"
             >
               <CssBaseline />
-              <div className="boxDiv">
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  minWidth: "100%",
+                  height: "100%",
+                }}
+              >
                 <Box
                   selected={selected}
                   sx={{
@@ -71,7 +113,13 @@ export default function SignInComponent() {
                     m: 0,
                   }}
                 >
-                  <div className="avtaricon">
+                  <Box
+                    sx={{
+                      display: "flex",
+                      top: 0,
+                      left: 0,
+                    }}
+                  >
                     <Avatar
                       sx={{
                         m: 1,
@@ -82,9 +130,27 @@ export default function SignInComponent() {
                       }}
                       src={Shreesh}
                     ></Avatar>
-                  </div>
-                  <div className="mainbody">
-                    <div className="typographySignIn">
+                  </Box>
+                  <Box
+                    sx={{
+                      marginTop: "2rem",
+                      display: "flex",
+                      flexDirection: "column",
+                      height: "100%",
+                      maxWidth: "60%",
+                      position: "relative",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: "flex",
+                        height: "100%",
+                        width: "100%",
+                        alignItems: "center",
+                        justifyItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
                       <Typography
                         sx={{
                           alignItems: "center",
@@ -96,11 +162,10 @@ export default function SignInComponent() {
                       >
                         Signin
                       </Typography>
-                    </div>
+                    </Box>
 
                     <Box
                       component="form"
-                      // onSubmit={handleSubmit}
                       onSubmit={(e) =>
                         handleSubmit(
                           e,
@@ -166,14 +231,14 @@ export default function SignInComponent() {
                         </Grid>
                       </Grid>
                     </Box>
-                  </div>
+                  </Box>
                 </Box>
-              </div>
+              </Box>
               <Copyright sx={{ mt: 8, mb: 4 }} />
             </Container>
-          </div>
+          </Container>
         </ThemeProvider>
-      </div>
-    </div>
+      </Container>
+    </Container>
   );
 }
